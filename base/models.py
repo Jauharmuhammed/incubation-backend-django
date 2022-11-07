@@ -1,5 +1,6 @@
 from email.policy import default
 from enum import unique
+from pyexpat import model
 from random import choices
 from secrets import choice
 from venv import create
@@ -16,8 +17,10 @@ class Incubation(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   create_date = models.DateTimeField(auto_now_add=True)
   updated_date = models.DateTimeField(auto_now=True)
+  is_new = models.BooleanField(default=True)
   is_approved = models.BooleanField(default=False)
   is_declined = models.BooleanField(default=False)
+  is_slot_allotted = models.BooleanField(default=False)
 
   name = models.CharField(max_length=255)
   address = models.CharField(max_length=255)
@@ -40,3 +43,16 @@ class Incubation(models.Model):
   type_of_incubation = models.CharField(choices=types_of_incubation, max_length= 100)
   business_proposal = models.TextField()
 
+  def __str__(self):
+    return self.company_name
+
+
+
+class Slot(models.Model):
+  company = models.OneToOneField(Incubation, on_delete=models.CASCADE, blank=True, null=True)
+  create_date = models.DateTimeField(auto_now_add=True)
+
+
+  def company_name(self):
+    if self.company:
+      return self.company.company_name

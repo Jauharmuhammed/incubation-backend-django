@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
-from base.models import Incubation
+from base.models import Incubation, Slot
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -43,4 +43,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 class IncubationSerializer(serializers.ModelSerializer):
   class Meta:
     model = Incubation
+    fields = '__all__'
+
+
+class SlotSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Slot
     fields = '__all__'
