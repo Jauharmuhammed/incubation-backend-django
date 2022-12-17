@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-e*b7+3)8312ukzgdpvn7-0=^eknd=_q0@=6b44&1gz^#(5+804
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://incubation-backend-django-production.up.railway.app']
+ALLOWED_HOSTS = ['incubation-backend-django-production.up.railway.app']
 
 
 
