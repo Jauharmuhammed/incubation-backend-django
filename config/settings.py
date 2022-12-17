@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -168,6 +169,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+# django will check for static files here if debug set to True
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+# django will check for static files here if debug set to False or Production Environment
+# also you need to configure urls.py and whitenoise to work this
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+WHITENOISE_MIMETYPES = {
+    '.xsl': 'application/xml'
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
