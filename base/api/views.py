@@ -36,9 +36,11 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 class IncubationView(generics.CreateAPIView):
-    queryset = Incubation.objects.all()
-    # parser_classes = (MultiPartParser, FormParser)
     serializer_class = IncubationSerializer
+
+    # queryset = Incubation.objects.all()
+    # parser_classes = (MultiPartParser, FormParser)
+
 
 
 @api_view(['GET'])
